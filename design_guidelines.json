@@ -1,0 +1,110 @@
+{
+  "app_name": "Stash",
+  "platform": "Expo React Native",
+  "theme": {
+    "mode": "dark",
+    "archetype": "Obsidian Tech Dark",
+    "colors": {
+      "background": {
+        "primary": "#1e1e1e",
+        "secondary": "#252525",
+        "elevated": "#2a2a2a"
+      },
+      "brand": {
+        "primary": "#7c3aed",
+        "primary_glow": "rgba(124, 58, 237, 0.4)"
+      },
+      "text": {
+        "primary": "#ffffff",
+        "secondary": "#a1a1aa",
+        "muted": "#71717a"
+      },
+      "border": "#333333",
+      "success": "#22c55e",
+      "error": "#ef4444"
+    }
+  },
+  "typography": {
+    "font_family": {
+      "heading": "Outfit",
+      "body": "Manrope"
+    },
+    "scales": {
+      "h1": "text-4xl font-black tracking-tighter",
+      "h2": "text-3xl font-bold tracking-tight",
+      "h3": "text-xl font-semibold tracking-tight",
+      "body": "text-base font-normal leading-relaxed",
+      "caption": "text-sm font-medium tracking-widest uppercase"
+    }
+  },
+  "layout_spacing": {
+    "screen_padding": "px-6",
+    "card_padding": "p-5",
+    "section_gap": "gap-8",
+    "item_gap": "gap-4",
+    "border_radius": {
+      "card": "rounded-2xl",
+      "button": "rounded-xl",
+      "pill": "rounded-full"
+    }
+  },
+  "components": {
+    "bottom_tab_bar": {
+      "background": "#1e1e1e",
+      "border_top": "1px solid #333333",
+      "active_tint": "#7c3aed",
+      "inactive_tint": "#71717a",
+      "style_notes": "Use lucide-react-native for icons. No labels. Subtle purple glow indicator on active tab."
+    },
+    "fab_quick_capture": {
+      "position": "absolute bottom-8 right-6",
+      "size": "h-16 w-16",
+      "background": "#7c3aed",
+      "icon": "Plus",
+      "shadow": "drop-shadow-[0_0_20px_rgba(124,58,237,0.6)]",
+      "interaction": "react-native-reanimated scale down on press. Opens Bottom Sheet."
+    },
+    "stash_card": {
+      "background": "#252525",
+      "border": "border border-[#333333]",
+      "radius": "rounded-2xl",
+      "layout": "Flex column. Top row: Category icon (lucide) + time elapsed. Middle: Truncated content/summary. Bottom: Extracted tags.",
+      "states": "Scale to 0.98 on press down, restore on release."
+    },
+    "capture_bottom_sheet": {
+      "background": "#252525",
+      "handle": "w-12 h-1 bg-[#71717a] rounded-full mx-auto mt-4",
+      "radius": "rounded-t-3xl",
+      "content": "Grid of quick actions: Screenshot, Link, Voice, Text."
+    }
+  },
+  "animations": {
+    "library": "react-native-reanimated",
+    "patterns": {
+      "card_press": "Scale down to 0.98",
+      "feed_load": "Staggered fade in and slide up (15px) for feed items",
+      "fab_pulse": "Continuous subtle opacity/scale pulse on the drop shadow"
+    }
+  },
+  "media": {
+    "splash_screen": {
+      "url": "https://static.prod-images.example.com/jobs/e024674a-2416-4389-8fec-8797abf8b283/images/17a88ffc78a34b61cf13a5849d51c4205b7ddcec4cef57a715595c3356556818.png",
+      "description": "App splash screen and onboarding background. Use as full screen ImageBackground with a dark gradient overlay."
+    },
+    "empty_state": {
+      "url": "https://static.prod-images.example.com/jobs/e024674a-2416-4389-8fec-8797abf8b283/images/b711d6deb37cda5f39082e8965ba2531b7487345c24611f265053b05e0a10ba8.png",
+      "description": "Use in 'Rediscover' or 'Search' when no stash is available. Render centered with muted text below."
+    },
+    "feature_showcase": {
+      "url": "https://static.prod-images.example.com/jobs/e024674a-2416-4389-8fec-8797abf8b283/images/95f907c9da276b89478fce6a78d81f19ff0f6cd12750b420df0225e7edea51a9.png",
+      "description": "Use in auth/register flow above the login form to showcase the app's aesthetic."
+    }
+  },
+  "development_rules": {
+    "file_extensions": "USE .js FILES ONLY. Do not use .tsx or .ts files.",
+    "testing": "CRITICAL: EVERY interactive element (TouchableOpacity, Pressable, TextInput, Button) MUST have a data-testid attribute in kebab-case based on its role.",
+    "icons": "Use lucide-react-native exclusively. NO EMOJIS anywhere in the UI.",
+    "styling": "Use React Native StyleSheet or NativeWind. Adhere strictly to the defined color palette and spacing system.",
+    "performance": "Use FlatList for feeds. Implement pull-to-refresh."
+  }
+}
