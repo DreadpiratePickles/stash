@@ -88,15 +88,15 @@
   },
   "media": {
     "splash_screen": {
-      "url": "https://static.prod-images.example.com/jobs/e024674a-2416-4389-8fec-8797abf8b283/images/17a88ffc78a34b61cf13a5849d51c4205b7ddcec4cef57a715595c3356556818.png",
+      "url": "",
       "description": "App splash screen and onboarding background. Use as full screen ImageBackground with a dark gradient overlay."
     },
     "empty_state": {
-      "url": "https://static.prod-images.example.com/jobs/e024674a-2416-4389-8fec-8797abf8b283/images/b711d6deb37cda5f39082e8965ba2531b7487345c24611f265053b05e0a10ba8.png",
+      "url": "",
       "description": "Use in 'Rediscover' or 'Search' when no stash is available. Render centered with muted text below."
     },
     "feature_showcase": {
-      "url": "https://static.prod-images.example.com/jobs/e024674a-2416-4389-8fec-8797abf8b283/images/95f907c9da276b89478fce6a78d81f19ff0f6cd12750b420df0225e7edea51a9.png",
+      "url": "",
       "description": "Use in auth/register flow above the login form to showcase the app's aesthetic."
     }
   },

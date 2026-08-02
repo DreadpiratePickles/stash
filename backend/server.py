@@ -15,7 +15,7 @@ from passlib.context import CryptContext
 from jose import jwt, JWTError
 from dotenv import load_dotenv
 
-from openai.llm.chat import LlmChat, UserMessage, ImageContent
+from openai import AsyncOpenAI
 
 
 ROOT_DIR = Path(__file__).parent
@@ -30,8 +30,11 @@ JWT_EXPIRES_MINUTES = int(os.environ.get("JWT_EXPIRES_MINUTES", "43200"))
 ADMIN_EMAIL = os.environ.get("ADMIN_EMAIL", "[email protected]").lower()
 ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "Stash2026!")
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
-LLM_MODEL = "gpt-5.1"
-LLM_PROVIDER = "openai"
+LLM_MODEL = os.environ.get("LLM_MODEL", "gpt-5.1")
+
+# Instantiated lazily so the service still boots without a key configured;
+# enrichment then degrades to the heuristic fallback instead of failing.
+_openai = AsyncOpenAI(api_key=OPENAI_API_KEY) if OPENAI_API_KEY else None
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("stash")
@@ -149,28 +152,32 @@ ENRICH_SYSTEM = (
 
 async def enrich_content(text: Optional[str], image_b64: Optional[str]) -> dict:
     import json
-    if not OPENAI_API_KEY:
+    if not _openai:
         return _fallback_enrich(text)
     try:
-        chat = LlmChat(
-            api_key=OPENAI_API_KEY,
-            session_id=f"enrich-{uuid.uuid4()}",
-            system_message=ENRICH_SYSTEM,
-        ).with_model(LLM_PROVIDER, LLM_MODEL)
-
         prompt = "Enrich this saved content. Return JSON only."
         if text:
             prompt += f"\n\nText/Link: {text[:2000]}"
         if image_b64:
             prompt += "\n\nAnalyze the attached screenshot too — extract any venue, title, artist, app source, or context visible."
 
-        msg_kwargs = {"text": prompt}
+        # Vision payloads travel as an inline data URL alongside the text part.
+        content: list[dict] = [{"type": "text", "text": prompt}]
         if image_b64:
-            msg_kwargs["file_contents"] = [ImageContent(image_base64=image_b64)]
-        user_msg = UserMessage(**msg_kwargs)
+            content.append({
+                "type": "image_url",
+                "image_url": {"url": f"data:image/jpeg;base64,{image_b64}"},
+            })
 
-        response = await chat.send_message(user_msg)
-        raw = response.strip()
+        completion = await _openai.chat.completions.create(
+            model=LLM_MODEL,
+            messages=[
+                {"role": "system", "content": ENRICH_SYSTEM},
+                {"role": "user", "content": content},
+            ],
+            response_format={"type": "json_object"},
+        )
+        raw = (completion.choices[0].message.content or "").strip()
         if raw.startswith("```"):
             raw = raw.strip("`")
             if raw.lower().startswith("json"):

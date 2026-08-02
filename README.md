@@ -33,7 +33,7 @@ Capture anything from the **share/screenshot layer** to bypass platform API rest
 ### Backend
 - **Framework**: [FastAPI](https://fastapi.tiangolo.com/) (Python)
 - **Database**: [MongoDB](https://www.mongodb.com/) with [Motor](https://motor.readthedocs.io/) (Async driver)
-- **AI Integration**: `openai` for LLM and Vision tasks (GPT-5.1 vision-capable)
+- **AI Integration**: official `openai` SDK for LLM and Vision tasks (GPT-5.1, vision-capable)
 - **Security**: JWT (python-jose) and Bcrypt (passlib)
 
 ### Frontend
@@ -83,7 +83,7 @@ Capture anything from the **share/screenshot layer** to bypass platform API rest
    MONGO_URL=your_mongodb_url
    DB_NAME=stash
    JWT_SECRET=your_secret_key
-   OPENAI_API_KEY=your_ai_api_key
+   OPENAI_API_KEY=your_openai_api_key
    ```
 4. Start the server:
    ```bash

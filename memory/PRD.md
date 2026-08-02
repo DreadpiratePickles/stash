@@ -15,7 +15,7 @@ What happens *after* the save:
 ## MVP Features
 - JWT email/password auth with a pre-seeded master admin
 - Capture flow: screenshot / camera / link / text note (+ optional location)
-- AI enrichment via the AI platform LLM key (gpt-5.1 vision-capable)
+- AI enrichment via OpenAI API key (gpt-5.1 vision-capable)
 - Tab navigation: Feed, Rediscover, Search, Profile
 - Stash detail with extracted metadata + user notes
 - Smart Rediscover: time-of-day priority categories, nearby places, forgotten gems
