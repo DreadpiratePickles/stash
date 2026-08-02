@@ -1,4 +1,22 @@
-# Stash 🧠
+<div align="center">
+
+# 🧠 Stash
+
+### **A second brain for the things you meant to remember.**
+
+![python](https://img.shields.io/badge/python-3.11%2B-3776AB?logo=python&logoColor=white)
+![fastapi](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
+![react native](https://img.shields.io/badge/React%20Native-61DAFB?logo=react&logoColor=black)
+![mongodb](https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=white)
+![llm](https://img.shields.io/badge/LLM-GPT--5.1%20vision-10a37f?logo=openai&logoColor=white)
+![license](https://img.shields.io/badge/license-MIT-blueviolet)
+
+*Everyone already has a place where recommendations go to die. It is called the
+notes app, and it contains the words "that cafe" with no further context.*
+
+</div>
+
+---
 
 **Stash** is a "second brain" designed for capturing and rediscovering ephemeral content. Whether it's a movie recommendation, a music track, a hidden cafe, a book title, or a random Wikipedia rabbit hole, Stash helps you save it in seconds and find it when it matters.
 
